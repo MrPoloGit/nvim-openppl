@@ -23,6 +23,34 @@ require("openppl").setup({
 })
 ```
 
+Add this plugin's directory to Neovim's runtime path however your plugin
+manager expects, then call `setup()` from your config.
+
+**Not listed anywhere.** This repo is pushed to
+`github.com/MrPoloGit/nvim-openppl`, usable today by any plugin manager
+that takes a plain git URL, but it isn't listed in awesome-neovim or
+any other curated index, nothing has been submitted anywhere.
+
+## Platform note: the bundled grammar is macOS arm64 only
+
+`parser/openppl.so` is a pre-compiled Mach-O arm64 dynamic library (`file
+parser/openppl.so` confirms this), built from `../tree-sitter-openppl`'s
+generated `src/parser.c`. On any other platform (Linux, Windows, or
+macOS on Intel), `setup()` will fail to load it, and you need to rebuild
+it yourself, which only needs the `tree-sitter` CLI (`npm install -g
+tree-sitter-cli`, or see its own install docs) and a C compiler:
+
+```sh
+tree-sitter build ../tree-sitter-openppl -o parser/openppl.so
+```
+
+Despite the `.so` extension (kept for Neovim's own convention, which
+doesn't care whether the file is actually an ELF `.so`, a Mach-O
+`.dylib`, or (after this exact command, run on Windows) a PE `.dll`),
+`tree-sitter build` always produces the right native format for whatever
+platform it runs on, confirmed by running it on this machine and getting
+back the same Mach-O arm64 library already bundled.
+
 ## What's implemented
 
 - **Filetype detection** (`ftdetect/openppl.lua`): `.ohf` → `openppl`.

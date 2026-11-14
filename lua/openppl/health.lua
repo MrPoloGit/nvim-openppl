@@ -1,6 +1,6 @@
 -- :checkhealth openppl, same role as nvim-phh/nvim-ohh's health.lua.
 -- Now includes a registry check, same as those two, openppl-ls's first
--- release had no registry at all .
+-- release had no registry at all.
 
 local M = {}
 

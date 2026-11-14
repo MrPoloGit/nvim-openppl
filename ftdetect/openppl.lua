@@ -1,4 +1,4 @@
--- Filetype detection for .ohf .
+-- Filetype detection for .ohf.
 vim.filetype.add({
   extension = {
     ohf = "openppl",

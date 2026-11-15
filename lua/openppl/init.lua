@@ -7,7 +7,7 @@
 --
 -- Now has a registry_path setting, same as nvim-phh/nvim-ohh.
 -- openppl-ls's first release took no registry argument at all, but now
--- loads openppl/registry/symbols.json, so setup() refuses to start without
+-- loads openppl-data/registry/symbols.json, so setup() refuses to start without
 -- registry_path, same "never approximate silently" rule those two
 -- plugins already followed.
 --

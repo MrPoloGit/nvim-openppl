@@ -17,7 +17,7 @@ dofile(root .. "/nvim-openppl/ftdetect/openppl.lua")
 local openppl = require("openppl")
 openppl.setup({
   server_path = root .. "/openppl-ls/build/openppl-ls",
-  registry_path = root .. "/openppl/registry",
+  registry_path = root .. "/openppl-data/registry",
 })
 
 check("setup() recorded state", openppl._state ~= nil)
@@ -44,8 +44,8 @@ local function open_and_wait(path)
   return bufnr
 end
 
-local valid_files = vim.fn.glob(root .. "/openppl/corpus/valid/*.ohf", false, true)
-local invalid_files = vim.fn.glob(root .. "/openppl/corpus/invalid/*.ohf", false, true)
+local valid_files = vim.fn.glob(root .. "/openppl-data/corpus/valid/*.ohf", false, true)
+local invalid_files = vim.fn.glob(root .. "/openppl-data/corpus/invalid/*.ohf", false, true)
 
 for _, path in ipairs(valid_files) do
   local bufnr = open_and_wait(path)
@@ -65,7 +65,7 @@ end
 -- Hover on structure-example.ohf's "hand$AA" (0-indexed line 3: header,
 -- two comment lines, then the WHEN hand$AA rule).
 do
-  local path = root .. "/openppl/corpus/valid/structure-example.ohf"
+  local path = root .. "/openppl-data/corpus/valid/structure-example.ohf"
   local bufnr = open_and_wait(path)
   local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "openppl-ls" })
   if #clients > 0 then

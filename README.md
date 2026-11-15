@@ -9,7 +9,7 @@ completion via Neovim's built-in LSP client.
 
 `openppl-ls`'s first release took no registry argument at all
 ; it now loads
-`openppl/registry/symbols.json`, so `setup()` requires `registry_path`,
+`openppl-data/registry/symbols.json`, so `setup()` requires `registry_path`,
 same "never approximate silently" rule `nvim-phh`/`nvim-ohh` already
 follow.
 
@@ -18,7 +18,7 @@ follow.
 ```lua
 require("openppl").setup({
   server_path = "/absolute/path/to/openppl-ls/build/openppl-ls", -- default: "openppl-ls" on PATH
-  registry_path = "/absolute/path/to/openppl/registry", -- required, no default
+  registry_path = "/absolute/path/to/openppl-data/registry", -- required, no default
   -- grammar_path defaults to the sibling tree-sitter-openppl checkout.
 })
 ```
@@ -74,7 +74,7 @@ back the same Mach-O arm64 library already bundled.
 nvim --headless --clean -u NONE -l nvim-openppl/test/headless_test.lua
 ```
 
-drives the real plugin against the real corpus (`../openppl/corpus/`).
+drives the real plugin against the real corpus (`../openppl-data/corpus/`).
 **All checks pass on the first real run**, same clean result
 `nvim-phh`/`nvim-ohh` got, for the same reason (Neovim's built-in
 tree-sitter/LSP client needs nothing editor-specific once the grammar
